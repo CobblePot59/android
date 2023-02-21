@@ -29,7 +29,7 @@ time.sleep(3)
 # Launch Trust CA Installer Activity to install previous cert
 subprocess.run('adb shell am start -n com.android.settings/.security.InstallCaCertificateWarning', shell=True)
 print('Click on install on your device and select cacert.cer file, located in the sdcard')
-input('Press enter when the task is finnish')
+input('Press enter when the task is finish')
 
 # Push Magisk extension to the device's /sdcard/
 subprocess.run('adb push AlwaysTrustUserCerts.zip /sdcard/', shell=True)
