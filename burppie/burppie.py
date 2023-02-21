@@ -22,13 +22,13 @@ time.sleep(3)
 # Remount the /system partition as read-write
 subprocess.run("adb remount", shell=True)
 
-# Push the certificate to the device's /sdcard/
+# Push the certificate to the certificate store
 subprocess.run("adb push 9a5ba575.0 /system/etc/security/cacerts/", shell=True)
 
-# Move the certificate to the /system/etc/security/cacerts/ directory and set the appropriate permissions
+# Set the appropriate permissions
 subprocess.run("adb shell chmod 644 /system/etc/security/cacerts/9a5ba575.0", shell=True)
 print("Burp Suite certificate installed successfully!")
 
-# Change settings of device to redirect taffic to Burp Suite
+# Change settings of device to redirect traffic to Burp Suite
 subprocess.run('adb shell "' + f'settings put global http_proxy {PROXY_IP}:{PROXY_PORT}"', shell=True)
 print("Device successfully connected to Burp Suite proxy!")
