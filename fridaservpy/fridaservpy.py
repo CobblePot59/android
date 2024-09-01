@@ -4,7 +4,7 @@ import requests
 import argparse
 import lzma
 import time
-# import frida
+import frida
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--arch", type = str, metavar = "<host>", help = "Specify type of architecture", choices=['arm', 'arm64', 'x86', 'x86_64'], default='x86_64')
@@ -43,7 +43,7 @@ subprocess.run('adb shell "chmod 755 /data/local/tmp/frida-server"', shell=True)
 
 # Launch frida-server in background
 print('\nfrida-server is started, you can press Ctrl+C')
-subprocess.run('adb shell "nohup /data/local/tmp/frida-server &"', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+subprocess.run('adb shell "nohup /data/local/tmp/frida-server > /dev/null 2>&1 &"', shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 # Get frida connected device
-# print('Device connected : '+str(frida.get_usb_device()))
+print('Device connected : '+str(frida.get_usb_device()))
